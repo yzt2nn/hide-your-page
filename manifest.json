@@ -16,7 +16,7 @@
       "default_popup": "popup.html"
     },
 
-    "permissions": ["contextMenus"],
+    "permissions": ["contextMenus", "cookies", "*://*.bilibili.com/"],
 
     "background": {
         "scripts": ["background.js"]

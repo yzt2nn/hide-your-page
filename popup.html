@@ -7,8 +7,8 @@
   </head>
   <body>
     <form name="urlForm" onsubmit="onUrlConfirm" style="margin: 10px">
-      <div style="margin: 5px 0px">页面地址:</div>
-      <input id="urlInput" type="text" name="url" style="width: 300px" />
+      <div style="margin: 5px 0px">页面地址（以 http:// 或 https:// 开头）</div>
+      <input id="urlInput" type="text" name="url" style="width: 300px" autocomplete="off"/>
       <input
         type="submit"
         value="使用此页面"
@@ -16,7 +16,19 @@
       />
     </form>
     <div style="clear: both"></div>
-    <div style="margin: 10px; display: flex; justify-content: flex-end">
+    <div
+      style="
+        margin: 10px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      "
+    >
+      <input id="bilibiliCrossLoginCheckbox" type="checkbox" />
+      <span style="margin-left: 2px;">继承Bilibili登录状态</span
+      >
+    </div>
+    <div style="margin: 20px 0px 10px 0px; display: flex; justify-content: flex-end">
       <button id="fullScreenButton">全屏</button>
       <button id="restoreScreenButton" style="margin-left: 10px">还原</button>
     </div>
