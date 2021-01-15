@@ -1,27 +1,25 @@
+let alterEle = null;
 let currentEle = null;
 let normalStyle = "";
 let fullScreenStyle = "";
 
+document.oncontextmenu = function (e) {
+  if (e.button == 2) {
+    const el = document.elementFromPoint(e.clientX, e.clientY);
+    if (el && el.tagName === "IMG") {
+      alterEle = el;
+    }
+  }
+};
+
 chrome.extension.onMessage.addListener(function (request) {
   switch (request.signal) {
     case "setPage": {
-      const srcUrl = request.info.srcUrl;
-      const images = document.getElementsByTagName("img");
-      let image = null;
-
-      for (let i = 0, length = images.length; i < length; i++) {
-        if (images[i].currentSrc === srcUrl) {
-          image = images[i];
-          break;
-        }
-      }
-      if (image) {
-        // 如果找到了图片
-        let alterEle = image;
+      if (alterEle) {
         const height = alterEle.offsetHeight;
         const width = alterEle.offsetWidth;
 
-        let parentNode = image.parentNode;
+        let parentNode = alterEle.parentNode;
         if (parentNode.tagName === "A") {
           alterEle = parentNode;
           parentNode = parentNode.parentNode;
@@ -32,13 +30,13 @@ chrome.extension.onMessage.addListener(function (request) {
         fullScreenStyle = `height: 100%; width: 100%; position: fixed; top: 0px; left: 0px; z-index: 99999; background-color: #fff;`;
         frame.style = normalStyle;
         frame.src = request.url;
+        // frame.sandbox = "allow-same-origin allow-top-navigation allow-scripts allow-forms allow-popups";
         parentNode.replaceChild(frame, alterEle);
         currentEle = frame;
       }
       break;
     }
     case "fullScreen": {
-      console.log(currentEle);
       if (!currentEle) {
         alert("您还没有在这个标签下投放页面！");
       }
