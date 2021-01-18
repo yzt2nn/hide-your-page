@@ -17,13 +17,13 @@ chrome.cookies.get(
       const el = document.getElementById("bilibiliCrossLoginCheckbox");
       if (sameSite === "no_restriction" && secure) {
         // enable cross login
-        el.checked = true
+        el.checked = true;
       } else {
-        el.checked = false
+        el.checked = false;
       }
     } else {
       //error
-      alert("很抱歉，获取信息失败！");
+      //alert("很抱歉，获取信息失败！");
     }
   }
 );
@@ -92,7 +92,7 @@ document.getElementById("bilibiliCrossLoginCheckbox").onclick = function (e) {
       } else {
         //error
         e.target.checked = !e.target.checked;
-        alert("很抱歉，获取cookie失败！");
+        alert("设置发生错误，请确保您已登录Bilibili！");
       }
     }
   );
