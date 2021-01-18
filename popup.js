@@ -86,14 +86,14 @@ document.getElementById("bilibiliCrossLoginCheckbox").onclick = function (e) {
               //ok
             } else {
               //error
-              e.target.checked = !e.target.checked;
+              e.target.checked = false;
               alert("很抱歉，设置失败！");
             }
           }
         );
       } else {
         //error
-        e.target.checked = !e.target.checked;
+        e.target.checked = false;
         alert("设置发生错误，请确保您已登录Bilibili！");
       }
     }
