@@ -1,7 +1,9 @@
 let currentUrl = window.localStorage.getItem("hyp-current-url");
 
-document.getElementById("urlInput").value = currentUrl;
-chrome.runtime.sendMessage({ url: currentUrl });
+if (currentUrl) {
+  document.getElementById("urlInput").value = currentUrl;
+  chrome.runtime.sendMessage({ url: currentUrl });
+}
 
 // 拉取并设置bilibili登录继承开关
 chrome.cookies.get(
